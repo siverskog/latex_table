@@ -70,7 +70,7 @@ require(stringr)
 
 ########################################################################################
 
-header <- function(h) {
+header <- function(h, cmid = TRUE) {
   
   n <- length(h[[length(h)]])
   
@@ -83,7 +83,7 @@ header <- function(h) {
     
     header <- c("\\toprule", a, "\\toprule", b, c, d, "\\midrule")
     
-  } else if(length(h)==2) {
+  } else if(length(h)==2 & cmid) {
     
     a <- .multicol(n/length(h[[1]]), h[[1]])
     b <- .cmidrule(n/length(h[[1]]), n + 1)
@@ -91,6 +91,13 @@ header <- function(h) {
     
     header <- c("\\toprule", a, b, c, "\\midrule")
     
+  } else if (length(h)==2 & !cmid) {
+    
+    a <- .multicol(n/length(h[[1]]) + 1, h[[1]])
+    b <- .header(h[[2]])
+    
+    header <- c("\\toprule", a, "\\toprule", b, "\\midrule")
+  
   } else {
     
     a <- .header(h[[1]])
