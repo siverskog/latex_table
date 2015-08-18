@@ -112,7 +112,7 @@ header <- function(h, cmid = TRUE) {
 
 latex.table <- function(h, t, size, type = "tabularx", align = c("l", rep("X", ncol))) {
   
-  begin <- .begin.table(size, type, align)
+  begin <- .begin.table(size, type, align = align)
   end <- .end.table(type)
   
   tab <- NULL
